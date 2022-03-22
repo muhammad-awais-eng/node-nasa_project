@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
 
-const launchSchema = new mongoose.Schema({
+const launchesSchema = new mongoose.Schema({
   flightNumber: {
     type: Number,
+    required: true,
+  },
+  launchDate: {
+    type: Date,
     required: true,
   },
   mission: {
@@ -13,13 +17,8 @@ const launchSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  launchDate: {
-    type: Date,
-    required: true,
-  },
   target: {
-    type: mongoose.ObjectId,
-    ref: "Planet",
+    type: String,
   },
   customers: [String],
   upcoming: {
@@ -33,6 +32,5 @@ const launchSchema = new mongoose.Schema({
   },
 });
 
-// connect launchSchema with "launches" collection in mongodb
-
-module.exports = mongoose.model("Launch", launchSchema);
+// Connects launchesSchema with the "launches" collection
+module.exports = mongoose.model("Launch", launchesSchema);
