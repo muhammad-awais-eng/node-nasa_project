@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 
-const MONGO_URL =
-  "mongodb+srv://nasa-api:admin123@cluster0.jarvl.mongodb.net/nasadb?retryWrites=true&w=majority";
-
+const MONGO_URL = process.env.MONGO_URL;
 mongoose.connection.once("open", () => {
   console.log("MongoDB Connected");
 });
@@ -13,10 +11,6 @@ mongoose.connection.on("error", (err) => {
 
 async function mongoConnect() {
   await mongoose.connect(MONGO_URL);
-  await loadPlanetsData();
-  server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
 }
 
 async function mongoDisconnect() {
